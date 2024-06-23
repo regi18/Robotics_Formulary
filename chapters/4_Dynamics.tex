@@ -1,0 +1,124 @@
+\vspace*{-15pt}
+\section{Dynamics}
+
+\vspace*{-5pt}
+$$
+\mathcal{\bm{L} = \bm{T} - \bm{U} \quad (= K - P)}
+\qquad
+\qquad
+\frac{d}{dt}\left(\frac{\partial \mathcal{\bm{L}}}{\partial \dot{\bm{q}}_i}\right)
+-
+\frac{\partial \mathcal{\bm{L}}}{\partial \bm{q}_i}
+=
+\mathcal{\bm{F}}_i
+\qquad
+i = 1, \dots, n
+$$
+
+\vspace*{10pt}
+\textbf{Kinetic:} 
+$$
+\mathcal{T} = \sum_{i=1}^n \mathcal{T}_{l_i} + \mathcal{T}_{m_i}
+\quad
+\implies 
+\quad
+\mathcal{T}
+= 
+\frac{1}{2}
+\sum_{i=1}^n
+\sum_{j=1}^n
+b_{ij}(\bm{q}) \dot{\bm{q}}_i \dot{\bm{q}}_j
+=
+\frac{1}{2} \dot{\bm{q}}^T \bm{B}(\bm{q}) \dot{\bm{q}}
+$$
+\vspace*{1pt}
+$$
+\begin{cases}
+	\mathcal{T}_{l_i}
+	=
+	\frac{1}{2} m_{l_i} \bm{\dot{p}}_i^T \bm{\dot{p}}_i
+	+
+	\frac{1}{2} \bm{\omega}_i^T {}^b\bm{R}_i {}^i\bm{I}_{l_i} ({}^b\bm{R}_i)^T \bm{\omega}_i \\
+	\mathcal{T}_{m_i}
+	=
+	\frac{1}{2} m_{m_i} \bm{\dot{p}}_i^T \bm{\dot{p}}_i
+	+
+	\frac{1}{2} \bm{\omega}_i^T {}^b\bm{R}_i {}^i\bm{I}_{m_i} ({}^b\bm{R}_i)^T \bm{\omega}_i
+\end{cases}
+$$
+\vspace*{3pt}
+$$
+\begin{cases}
+	\mathcal{T}_{l_i}
+	=
+	\frac{1}{2} m_{l_i} \left(\bm{\dot{q}}^T \bm{J}_p^{(l_i)T}\right) \left(\bm{J}_p^{(l_i)} \bm{\dot{q}}\right)
+	+
+	\frac{1}{2} 
+	\left(\bm{\dot{q}}^T \bm{J}_o^{(l_i)T}\right)
+	\left( {}^b\bm{R}_i {}^i\bm{I}_{l_i} ({}^b\bm{R}_i)^T \right)
+	\left(\bm{J}_o^{(l_i)} \bm{\dot{q}}\right) \\
+	\mathcal{T}_{m_i}
+	=
+	\frac{1}{2} m_{m_i} \left(\bm{\dot{q}}^T \bm{J}_p^{(m_i)T}\right) \left(\bm{J}_p^{(m_i)} \bm{\dot{q}}\right)
+	+
+	\frac{1}{2} 
+	\left(\bm{\dot{q}}^T \bm{J}_o^{(m_i)T}\right)
+	\left( {}^b\bm{R}_{m_i} {}^{m_i}\bm{I}_{m_i} ({}^b\bm{R}_{m_i})^T \right)
+	\left(\bm{J}_o^{(m_i)} \bm{\dot{q}}\right)
+\end{cases}
+$$
+
+\vspace*{10pt}
+\textbf{Potential: }
+\vspace*{-3pt}
+$$
+\mathcal{U} = \sum_{i=1}^n \mathcal{U}_{l_i} + \mathcal{U}_{m_i}
+\quad
+\implies 
+\quad
+\mathcal{U} = - \sum_{i=1}^n m_{l_i}\bm{g}_0^T \bm{p}_{l_i} + m_{m_i}\bm{g}_0^T \bm{p}_{m_i}
+$$
+
+\vspace*{10pt}
+\textbf{Dynamic equations: }
+$$
+\sum_{j=1}^n \bm{B}_{ij}(\bm{q}) \ddot{q}_j
++
+\sum_{j=1}^n \sum_{k=1}^n h_{ijk} (\bm{q}) \dot{q}_k \dot{q}_j 
++
+g_i(\bm{q})
+=
+\mathcal{F}_i
+\qquad
+h_{ijk}
+=
+\frac{\partial B_{ij}}{\partial q_k}
+-
+\frac{1}{2} \frac{\partial B_{jk}}{\partial q_i}
+\quad
+$$
+
+$$
+g_i(\bm{q})
+=
+\frac{\partial \mathcal{U}}{\partial q_i}
+=
+-\sum_{j=1}^n m_{l_j}\bm{g}_0^T \bm{J}^{(l_j)}_{p_i}(\bm{q}) + m_{m_j}\bm{g}_0^T  \bm{J}^{(m_j)}_{p_i}(\bm{q})
+$$
+
+\vspace*{5pt}
+\begin{gather*}
+\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{q} + \bm{g}(\bm{q})= \mathcal{\bm{F}} \\
+\Downarrow \\
+\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{q} +
+\bm{F}_{viscous}\dot{\bm{q}} 
++
+\bm{F}_{static} \text{sgn}(\dot{\bm{q}})
++
+\bm{g}(\bm{q})
+= 
+\bm{\tau}
+-
+\bm{J}^T(\bm{q}) \bm{h}
+\end{gather*}
+\vspace{-5pt}

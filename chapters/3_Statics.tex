@@ -1,0 +1,42 @@
+\vspace*{-17pt}
+\section{Statics}
+\vspace*{-5pt}
+
+$$
+\bm{\tau}^T\delta \bm{q} = \bm{F}^T\delta\bm{p}
+\implies
+\text{\emoji{balance-scale}: } \ 
+\bm{\tau} = -\bm{J}^T(\bm{q})\bm{F}
+$$
+
+$$
+\mathcal{N}(\bm{J}) \equiv \mathcal{R}^\perp(\bm{J}^T)
+\qquad
+\mathcal{R}(\bm{J}) \equiv \mathcal{N}^\perp(\bm{J}^T)
+$$
+
+\textbf{Ellipsoids: }
+$$
+\|\bm{\dot{q}}\|^2 = 1 \iff \bm{\dot{q}}^T\bm{\dot{q}} = 1
+\overset{\dot{q} = J^\dagger v}{\implies}
+\bm{v}^T (\bm{J}\bm{J}^T)^{-1}\bm{v} = 1
+\implies
+E_v = \{\bm{v} \ : \ \bm{v}^T (\bm{J}\bm{J}^T)^{-1}\bm{v} = 1 \}
+$$
+%\vspace*{-3pt}
+
+$$
+\|\bm{\dot{\tau}}\|^2 = 1 \iff \bm{\tau}^T\bm{\tau} = 1
+\overset{\tau = J^T F}{\implies}
+E_F = \{\bm{F} \ : \ \bm{F}^T (\bm{J}\bm{J}^T)\bm{F} = 1 \}
+$$
+
+\textbf{Manipulability measure: }
+$$
+w(\bm{q}) = \sqrt{\det(\bm{J}\bm{J}^T)}
+=
+|\lambda_1\lambda_2 \cdots \lambda_n|
+=
+|\det(\bm{J})|
+$$
+%\vspace{-20pt}

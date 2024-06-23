@@ -1,0 +1,89 @@
+\documentclass[]{article}
+\usepackage[italian]{babel}
+\usepackage[margin=3mm,a3paper]{geometry}
+\usepackage{float}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{multicol}
+\usepackage{color,soul}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{cancel}
+\usepackage{subcaption}
+\usepackage{wrapfig,lipsum}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{colortbl} % for cell color
+\usepackage{graphbox}
+\usepackage{emoji}
+
+
+\setlist[itemize]{left=0pt}
+
+
+\usepackage{titlesec}
+%\titleformat*{\section}{\normalsize\bfseries}
+\titlespacing*{\section}{0pt}{10pt}{10pt}
+\titlespacing*{\paragraph}{0pt}{0pt}{3pt}
+
+% Horizontal line before ssection
+\titleformat{\section}
+{
+	\ifnum \value{section}>1
+		\ifnum \value{section}=5
+			% Do nothing if section number is 5
+		\else
+			\vbox{\rule{\linewidth}{0.8pt}}
+		\fi
+	\fi
+	\Large\bfseries
+}
+{\thesection.}
+{0.5em}
+{}
+
+
+%\frenchspacing % end of sentence space is not different from the normal inter-word spacing
+
+\setlength{\columnseprule}{0.3pt}
+\setlength{\columnsep}{0.5cm}
+
+
+
+
+% ---------- NEW COMMANDS ----------
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=2pt] (char) {#1};}} % Circled number
+
+\newcommand{\R}{\mathbb{R}}
+% ----------------------------------
+
+
+
+\graphicspath{ {images/} }
+
+
+\begin{document}
+	
+	\setlength{\abovedisplayskip}{1pt}
+	\setlength{\belowdisplayskip}{1pt}
+	\setlength{\abovedisplayshortskip}{1pt}
+	\setlength{\belowdisplayshortskip}{1pt}
+	
+	\setlength\parindent{0pt}
+	%\setcounter{secnumdepth}{0}
+	
+\begin{multicols*}{2}
+
+\input{chapters/1_DH}
+\input{chapters/2_Jacobian}
+\input{chapters/3_Statics}
+\input{chapters/4_Dynamics}
+\input{chapters/5_Trajectories}
+\input{chapters/6_Control}
+\input{chapters/7_Mobile}
+
+\end{multicols*}
+
+\end{document}

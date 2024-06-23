@@ -1,0 +1,125 @@
+\section{Mobile Robotics}
+
+$$
+\parbox{7.7em}{\centering holonomic constr. (integrable)} 
+\iff
+h_i(\bm{q}) = 0, \ 
+i = 1\dots k < n
+\implies
+\parbox{3em}{\centering kin. constr.}: \quad
+\frac{dh_i(\bm{q})}{dt} = \frac{dh_i(\bm{q})}{d\bm{q}}\bm{\dot{q}} = 0
+$$
+
+$$
+\text{kin. constr. } \ a_i(\bm{q}, \dot{\bm{q}}) = 0
+\implies \text{pfaffian } \ \bm{a}_i^T(\bm{q})\bm{\dot{q}} = 0
+\ \leftrightarrow \ 
+\bm{A}^T(\bm{q})\bm{\dot{q}} = 0
+$$
+
+$$
+\dot{\bm{q}} \in \mathcal{N}(\bm{A}^T(\bm{q}))
+\implies
+\langle\bm{g}_1(\bm{q}), \dots, \bm{g}_n-k(\bm{q})\rangle \ \text{base of } \mathcal{N}
+\implies
+\dot{\bm{q}} = \bm{G}(\bm{q})\bm{u}
+$$
+
+\subsection{Unicycle}
+$$
+\text{pure rolling c.: } \quad 
+\frac{dy}{dx} = \tan\theta
+\implies
+\bm{q} = 
+\begin{bmatrix}x \\ y \\ \theta \end{bmatrix}
+%\dot{x}\sin\theta - \dot{y}\cos\theta = 0 
+\implies
+\begin{bmatrix}
+\sin\theta \\ -\cos\theta \\ 0
+\end{bmatrix}^T
+\bm{\dot{q}} = 0
+\quad , \quad
+\bm{G}(\bm{q})
+=
+\begin{bmatrix}
+	\cos\theta & 0 \\
+	\sin\theta & 0 \\
+	0 & 1
+\end{bmatrix}
+$$
+
+
+\subsection{Differential drive}
+$$
+v = \frac{r(\omega_R + \omega_L)}{2}
+\qquad
+\omega = \frac{r(\omega_R - \omega_L)}{d}
+$$
+
+\vspace*{-15pt}
+\subsection{Bike}
+$$
+\text{pure rolling (front w., back w.): } \quad 
+\dot{x}_f\sin(\theta + \phi) - \dot{y}_f\cos(\theta + \phi) = 0
+\quad , \quad
+\dot{x}\sin\theta - \dot{y}\cos\theta = 0
+$$
+$$
+x_f = x + L\cos\theta 
+\ , \ 
+y_f = y + L\sin\theta
+\overset{1^{st} c.}{\implies}
+\dot{x}\sin(\theta + \phi) - \dot{y}\cos(\theta + \phi) - L\dot{\theta}\cos\phi = 0
+$$
+
+$$
+\bm{A}^T({\bm{q}}) = 
+\begin{bmatrix}
+\sin\theta & -\cos\theta & 0 & 0 \\
+\sin(\theta + \phi) & -cos(\theta + \phi) & -L\cos\phi & 0
+\end{bmatrix}
+\qquad
+\bm{G}({\bm{q}}) = 
+\begin{bmatrix}
+\cos\theta \cos\phi & 0 \\
+\sin\theta\cos\phi & 0 \\
+\sin\phi / L & 0 \\
+0 & 1
+\end{bmatrix}
+$$
+
+\vspace*{-5pt}
+$$
+\begin{bmatrix}\dot{x} \\ \dot{y} \\ \dot{\theta} \\ \dot{\phi}\end{bmatrix}
+=
+\bm{G}_1({\bm{q}}) u_1 + \bm{G}_2({\bm{q}}) u_2
+\quad
+(u_2 \equiv \omega)
+\qquad
+\text{if front drive: } u_1 = v
+\ , \
+\text{if back d.: } u_1 = \frac{v}{\cos\phi}
+$$
+
+
+\vbox{\rule{\linewidth}{0.8pt}}
+\vspace*{-5pt}
+$$
+R_x(\theta) = \begin{bmatrix}
+	1 &  0            &  0           \\
+	0 &  \cos \theta  & -\sin \theta \\[3pt]
+	0 &  \sin \theta & \cos \theta \\[3pt]
+\end{bmatrix}
+\quad
+R_y(\theta) = \begin{bmatrix}
+	\cos \theta & 0 & \sin \theta \\[3pt]
+	0           & 1 &  0           \\[3pt]
+	-\sin \theta & 0 &  \cos \theta \\
+\end{bmatrix}
+\quad
+R_z(\theta) = \begin{bmatrix}
+	\cos \theta & -\sin \theta & 0 \\[3pt]
+	\sin \theta &  \cos \theta & 0 \\[3pt]
+	0           &  0           & 1 \\
+\end{bmatrix}
+$$

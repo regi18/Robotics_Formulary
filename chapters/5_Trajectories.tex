@@ -1,0 +1,191 @@
+\section{Trajectories}
+
+\subsection{PTP}
+
+\begin{align*}
+	\text{minimize} \ \int_0^{t_f} \bm{\tau}^2(t)dt \qquad
+	\text{subject to} \ \int_0^{t_f} \bm{\omega}(t)dt = \bm{q}_f - \bm{q}_i
+	\qquad
+	(\tau = I\dot{\omega})
+\end{align*}
+
+\begin{gather*}
+\begin{cases}
+\bm{q}(t) &= a_3t^3 + a_2t^2 + a_1t + a_0 \\
+\bm{\dot{q}}(t) &= 3a_3t^2 + 2a_2t + a_1 \\
+\bm{\ddot{q}}(t) &= 6a_3t + 2a_2
+\end{cases}
+\end{gather*}
+\vspace*{7pt}
+$$
+\begin{cases*}
+	\bm{q}(t_i) = a_3t_i^3 + a_2t_i^2 + a_1t_i + a_0 \\
+	\bm{q}(t_f) = a_3t_f^3 + a_2t_f^2 + a_1t_f + a_0 \\
+	\bm{\dot{q}}(t_i) = 3a_3t_i^2 + 2a_2t_i + a_1 \\
+	\bm{\dot{q}}(t_i) = 3a_3t_f^2 + 2a_2t_f + a_1 \\
+	\bm{q}(t_i) = \bm{q}_i \\
+	\bm{q}(t_f) = \bm{q}_f \\
+	\bm{\dot{q}}(t_f) = \bm{\dot{q}}_i \\
+	\bm{\dot{q}}(t_f) = \bm{\dot{q}}_f
+\end{cases*}
+\overset{t_f = 0}{\implies}
+\begin{cases*}
+	\bm{q}_i = a_0 \\
+	\bm{q}_f = a_3t_f^3 + a_2t_f^2 + a_1t_f + a_0 \\
+	\bm{\dot{q}}_i = a_1 \\
+	\bm{\dot{q}}_f = 3a_3t_f^2 + 2a_2t_f + a_1
+\end{cases*}
+$$
+
+
+
+\subsection{2-1-2}
+
+$$
+\left[
+\bm{\dot{q}}_c 
+= 
+\frac{\bm{q}_m - \bm{q}_c}{t_m - t_c}
+=
+\frac{\text{rise}}{\text{run}}
+\qquad
+\bm{\ddot{q}}t_c
+=
+\bm{\dot{q}}
+=
+\frac{\bm{q}_m - \bm{q}_c}{t_m - t_c}
+\qquad
+\bm{\ddot{q}}_ct_c^2
++
+\bm{\ddot{q}}_c t_f t_c
++
+\bm{q}_f - \bm{q}_i = 0
+\right]
+$$
+\vspace*{10pt}
+$$
+t_c
+=
+\frac{t_f}{2} - \frac{1}{2}
+\sqrt{
+	\frac{t_f^2 \ddot{\bm{q}} - 4(\bm{q}_f - \bm{q}_i)}{\bm{\ddot{q}}_c}
+}
+\qquad
+\text{sgn}(\ddot{\bm{q}})
+=
+\text{sgn}(\bm{q}_f - \bm{q}_i)
+\qquad
+|\ddot{\bm{q}}| \ge \frac{4|\bm{q}_f - \bm{q}_i|}{t_f^2}
+$$
+\vspace*{10pt}
+$$
+\bm{q}(t)
+=
+\begin{cases}
+	\bm{q}_i + \frac{1}{2} \ddot{\bm{q}}_c t^2 & \quad 0 \leq t \leq t_c \\
+	\bm{q}_i + \ddot{\bm{q}}_c t_c (t - t_c/2) & \quad t_c < t \leq t_f - t_c \\
+	\bm{q}_f - \frac{1}{2} \ddot{\bm{q}}_c (t_f - t)^2 & \quad t_f - t_c < t \leq t_f
+\end{cases}
+$$
+
+
+\vspace*{10pt}
+\textbf{Assegnazione di $\bm{\dot{q}}_c$ invece di $\bm{\ddot{q}}_c$}
+\vspace*{5pt}
+$$
+\frac{|\bm{q}_f - \bm{q}_i|}{t_f}
+<
+|\bm{\dot{q}}_c|
+\leq
+2 \frac{|\bm{q}_f - \bm{q}_i|}{t_f}
+\qquad
+t_c = \frac{\bm{q}_i - \bm{q}_f + \bm{\dot{q}}_c t_f }{\dot{\bm{q}}_c}
+\qquad
+\bm{\ddot{q}}
+=
+\frac{\bm{\dot{q}}_c^2}{\bm{q}_i - \bm{q}_f + \bm{\dot{q}} t_f}
+$$
+
+
+
+
+
+\subsection{Operational space}
+\begin{align*}
+	x_{traj} = \begin{bmatrix}p(t) \\ \phi(t) \end{bmatrix}
+	\quad
+	\dot{p} = \dot{s} \frac{dp}{ds} = \dot{s}{t}
+	\qquad ; \qquad
+%	\text{primitive: } \quad
+	\bm{t} = \frac{d\bm{p}}{ds}
+	\qquad
+	\bm{n} = \frac{\frac{d^2 \bm{p}}{ds^2}}{\| \frac{d^2 \bm{p}}{ds^2} \|}
+	\qquad
+	\bm{b} = \bm{t} \times \bm{n}
+\end{align*}
+
+
+\subsubsection{Segment}
+$$
+p(s) = p_i + \frac{s(p_f - p_i)}{\| p_f - p_i \|}
+\qquad \qquad
+t = \frac{dp}{ds} = \frac{(p_f - p_i)}{\| p_f - p_i \|}
+\qquad
+\frac{d^2p}{ds^2} = 0
+$$
+
+$$
+p(s) = p_i + \frac{s(p_f - p_i)}{\|p_f - p_i\|}
+\qquad
+\dot{p} = \frac{\dot{s}(p_f - p_i)}{\|p_f - p_i\|} = \dot{s}t
+\qquad
+\ddot{p} = \frac{\ddot{s}(p_f - p_i)}{\|p_f - p_i\|} = \ddot{s}t
+$$
+
+\subsubsection{Circonference}
+$$
+p'(s)
+=
+\begin{bmatrix}
+	\rho \cos(\frac{s}{\rho}) &
+	\rho \sin(\frac{s}{\rho}) &
+	0
+\end{bmatrix}
+\implies
+p(s) = c + {}^\mathcal{O}R_{\mathcal{O}'} p'(s)
+$$
+
+$$
+\frac{dp}{ds} = R 
+\begin{bmatrix} -\sin(s/\rho) & cos(s/\rho) & 0 \end{bmatrix}
+\qquad
+\frac{d^2p}{ds^2} = R 
+\begin{bmatrix} -\cos(s/\rho)/\rho & -sin(s/\rho)/\rho & 0 \end{bmatrix}
+$$
+
+$$
+p(s) 
+= 
+c + R \begin{bmatrix} \rho \cos(s/\rho) \\ \rho \sin(s/\rho) \\ 0 \end{bmatrix}
+\qquad
+\dot{p}
+=
+R \begin{bmatrix} - \dot{s} \sin(s/\rho) \\ \dot{s} \sin(s/\rho) \\ 0 \end{bmatrix}
+\qquad
+\ddot{p}
+=
+R \begin{bmatrix} 
+	- \dot{s}^2 \rho^{-1} \cos(s/\rho) - \ddot{s} \sin(s/\rho) \\ 
+	- \dot{s}^2 \rho^{-1} \sin(s/\rho) + \ddot{s} \sin(s/\rho) 
+	\\ 0 
+\end{bmatrix}
+$$
+
+\subsubsection{Attitude trajectory}
+$$
+\phi(s) = \phi_i + \frac{s(\phi_f - \phi_i)}{\|\phi_f - \phi_i\|}
+\qquad
+\dot{\phi} = \frac{\dot{s}(\phi_f - \phi_i)}{\|\phi_f - \phi_i\|}
+\qquad
+\ddot{\phi} = \frac{\ddot{s}(\phi_f - \phi_i)}{\|\phi_f - \phi_i\|}
+$$

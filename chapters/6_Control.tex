@@ -1,0 +1,240 @@
+\section{Control}
+
+\subsection{Actuator model}
+$$
+\textbf{mech:  }
+K_r^{-1} \tau = K_t i_a
+\qquad
+\textbf{electr:  }
+v_a = R_ai_a + K_v \dot{q}_m
+\ , \
+v_a = G_vV_c
+\qquad
+;
+\qquad
+\left[ K_r q = q_m \right]
+$$
+
+%\vspace*{5pt}
+\subsubsection{Velocity generator: }
+$$
+\omega_m = \frac{G_v}{k_v} v_c'
+\qquad
+F = F_v K_r K_t R_a^{-1} K_v K_r 
+\qquad
+u = K_r K_t R_a^{-1} G_v v_c
+\qquad
+\qquad
+$$
+$$
+u = \tau + F\dot{q} 
+\implies
+\tau = K_r K_t R_a^{-1} (G_vv_c - K_vK_r\dot{q})
+\qquad
+v_c \approx G_v^{-1} K_v K_r \dot{q}
+$$
+
+%\vspace*{5pt}
+\subsubsection{Torque generator: }
+$$
+c_m \approx \frac{k_t}{k_i} ( v_c' - \frac{k_v}{G_v}\omega_m)
+$$
+
+
+
+\subsection{Decentralized joint control}
+$$
+\tau = K_r \tau_m
+\qquad
+q = K_r^{-1}q_m
+\qquad
+B(q) = \bar{B} + \Delta B(q) \quad 
+%(\bar{B} = \textit{diag. and const})
+$$
+
+$$
+K_r^{-1} \bar{B} K_r^{-1} \ddot{q}_m + 
+\underbrace{
+ K_r^{-1}\Delta B(q) K_r^{-1} \ddot{q}_m +
+ K_r^{-1}C(q, \dot{q})K_r^{-1}\dot{q}_m +  K_r^{-1}g(q)
+}_{d}
++  
+\underbrace{K_r^{-1}F_vK_r^{-1}}_{F_m}\dot{q}_m = \tau_m \\
+$$
+
+$$
+\textbf{t.f. motor:  } M(s) = \frac{k_m}{s(1+T_ms)}
+\qquad \quad
+%\text{gain const: }
+k_m = \frac{1}{k_v}
+\ , \
+%\text{time const: }
+T_m = \frac{R_a I}{k_t k_v}
+$$
+
+$$
+\textbf{PI control:  } C(s) = K_c \frac{1+sT_c}{s}
+\qquad
+\left[ \ K_c \equiv K_p, T_c \equiv T_p \ \| \ K_c \equiv K_v, \ \cdots \ \right]
+$$
+
+\subsubsection{Position feedback}
+$$
+\text{forward path: } \quad G(s) = \frac{k_m K_p(1+sT_p)}{s^2(1+sT_m)}
+\implies
+\begin{cases}
+	\text{\times} & T_p < T_m \\
+	\text{\checkmark} & T_p > T_m \\
+	\text{\checkmark} \, \rotatebox[origin=c]{90}{\gg} & T_p \gg T_m \\
+\end{cases}
+$$
+
+
+\subsection{Centralized joint control}
+
+$$
+\text{current controlled} 
+\implies 
+i_a = G_i v_c
+\implies 
+u = K_rK_tG_iv_c = \tau
+$$
+
+$$
+x = 
+\begin{bmatrix}q \\ \dot{q} \end{bmatrix}
+\implies
+\dot{x} = 
+\begin{bmatrix}
+\dot{q} \\
+B^{-1}(q) \left[ u - C(q, \dot{q})\dot{q} - F\dot{q} - g(q) \right]
+\end{bmatrix}
+\qquad
+x_{eq} \iff \dot{x} = 0 \iff 
+\begin{cases}
+	\dot{q} = 0 \\
+	\bar{u} = g(\bar{q})
+\end{cases}
+$$
+
+\subsubsection{PD control with gravity compensation}
+$$
+V(\dot{q}, e) = \frac{1}{2}\dot{q}^TB(q)\dot{q} + \frac{1}{2}e^TK_Pe > 0 \qquad \forall \dot{q},e \neq 0
+\qquad \qquad
+e \triangleq q_d - q
+$$
+
+$$
+\dot{V} = \dot{q}^TB(q)\ddot{q} + \frac{1}{2}\dot{q}^T\dot{B}(q)\dot{q} - \dot{q}^TK_Pe
+\qquad
+u = g(q) + K_p e - K_d \dot{q}
+$$
+\vspace*{-15pt}
+
+\subsubsection{Inverse dynamics (feedback linearization)}
+
+$$
+B(q)\ddot{q} + n(q, \dot{q}) = \tau = u
+\quad
+\overset{F.L.}{\implies}
+\quad
+u \triangleq B(q)y + n(q, \dot{q})
+\quad
+\implies
+\quad
+\ddot{q} = y
+$$
+
+$$
+\text{PD control: } \qquad
+y \triangleq -K_P q - K_D \dot{q} + r
+\quad , \quad
+r \triangleq \ddot{q}_d + K_P q_d + K_D \dot{q}_d
+$$
+
+$$
+\left[
+\quad
+\overset{\ddot{q} = y}{\implies}
+\ddot{q} + K_P q + K_D \dot{q} = r
+\quad \implies \quad
+\ddot{e} + K_D \dot{e} + K_P e = 0
+\quad
+\right]
+$$
+
+$$
+\implies \quad
+\bm{y} = \bm{K_p}(\bm{q}_d - \bm{q}) + \bm{K_d}(\dot{\bm{q}}_d - \dot{\bm{q}}) + \ddot{\bm{q}}_d
+$$
+
+$$
+\left[
+\ 
+%\textit{to decouple: }
+\quad 
+K_P = diag\{\omega_{n1}^2, \ \dots, \ \omega_{nn}^2\}
+\quad
+K_D = diag\{2\zeta\omega_{n1}, \ \dots, \ 2\zeta\omega_{nn}^2\}
+\quad
+\right]
+$$
+
+
+
+
+\subsection{Operational space control}
+
+\subsubsection{PD with gravity compensation}
+
+$$
+e \triangleq x_d - x
+\qquad 
+u = g(q) + J_A^T(q)K_P e - J_A^T(q)K_P K_D J_A(q)\dot{q}
+$$
+
+$$
+V(\dot{q}, e) = \frac{1}{2}\dot{q}^TB(q)\dot{q} + \frac{1}{2}e^TK_Pe > 0 \qquad \forall \dot{q},e \neq 0
+$$
+
+$$
+\text{at equilibrium } \quad \dot{x} = (\dot{q}, \ddot{q}) = 0
+\quad \implies \quad
+-J_A^T(q)K_P e = 0
+$$
+
+
+\subsubsection{Inverse dynamics (feedback linearization)}
+$$
+\dot{x} = J_A(q)\dot{q} \quad \implies \quad \ddot{x} = \dot{J}_A(q)\ddot{q} + \dot{J}_A(q, \dot{q})\dot{q}
+$$
+
+$$
+u \triangleq B(q)y + n(q, \dot{q})
+\ \implies \
+\ddot{q} = y
+\quad \implies \quad
+y \triangleq J_{A}^{-1}(q)\bigl(\ddot{x}_{d}+K_{D}\dot{e}+K_{P}e-\dot{J}_{A}(q,\dot{q})\dot{q}\bigr)
+$$
+
+
+
+\section{Control of the interaction}
+$$
+B(q)\ddot{q} + n(q, \dot{q}) = u - \underbrace{J^T(q) h}_{interaction}
+\implies
+\text{PD with gravity comp. } \ 
+J_A^T(q)K_P e = J^T(q) h
+$$
+
+$$
+h_A = T_A^T(x) K T_A(x) dx = K_A(x)(x-x_e)
+\implies
+e = K_P^{-1} K_A(x) (x-x_e)
+$$
+
+\begin{gather*}
+x_\infty = (I - K_P^{-1}K_A(x))^{-1}(x_d + K_P^{-1}K_A(x)x_e)
+\  \quad
+h_{A \infty} = (I+ K_A(x)K_P^{-1})^{-1}K_A(x)(x_d-x_e)
+\end{gather*}
