@@ -167,7 +167,7 @@ $$
 \underbrace{\frac{d\bm{q}}{d t}}_{\dot{\bm{q}}}
 =
 \bm{J}_A(\bm{q})\dot{\bm{q}}
-\quad \qquad
+\ , \
 \bm{J}(\bm{q})
 =
 \begin{bmatrix}
@@ -175,9 +175,20 @@ $$
 	\bm{0} & \bm{T}(\bm{\phi})
 \end{bmatrix}
 \bm{J}_A(\bm{q})
-%\qquad
+\ , \
 %\parbox[position]{6em}{$T(\phi)$ depends on the attitude represent.}
+T(\phi)
+\overset{zyz}{=}
+\begin{bmatrix}
+	0 & -s_\phi & c_\phi s_\theta \\
+	0 & c_\theta & s_\phi s_\theta \\
+	1 & 0 & c_\theta
+\end{bmatrix}
 \end{gather*}
+
+\begin{textblock}{5}(6.7,0)
+	$\omega = T(\phi) \dot{\phi}$
+\end{textblock}
 
 
 \vspace*{-5pt}

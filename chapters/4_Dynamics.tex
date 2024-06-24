@@ -82,7 +82,7 @@ $$
 \vspace*{10pt}
 \textbf{Dynamic equations: }
 $$
-\sum_{j=1}^n \bm{B}_{ij}(\bm{q}) \ddot{q}_j
+\sum_{j=1}^n b_{ij}(\bm{q}) \ddot{q}_j
 +
 \sum_{j=1}^n \sum_{k=1}^n h_{ijk} (\bm{q}) \dot{q}_k \dot{q}_j 
 +
@@ -92,9 +92,9 @@ g_i(\bm{q})
 \qquad
 h_{ijk}
 =
-\frac{\partial B_{ij}}{\partial q_k}
+\frac{\partial b_{ij}}{\partial q_k}
 -
-\frac{1}{2} \frac{\partial B_{jk}}{\partial q_i}
+\frac{1}{2} \frac{\partial b_{jk}}{\partial q_i}
 \quad
 $$
 
@@ -108,9 +108,9 @@ $$
 
 \vspace*{5pt}
 \begin{gather*}
-\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{q} + \bm{g}(\bm{q})= \mathcal{\bm{F}} \\
+\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{\dot{q}} + \bm{g}(\bm{q})= \mathcal{\bm{F}} \\
 \Downarrow \\
-\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{q} +
+\bm{B}(\bm{q})\bm{\ddot{q}} + \bm{C}(\bm{q}, \bm{\dot{q}})\bm{\dot{q}} +
 \bm{F}_{viscous}\dot{\bm{q}} 
 +
 \bm{F}_{static} \text{sgn}(\dot{\bm{q}})
