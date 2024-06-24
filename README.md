@@ -1,6 +1,7 @@
 # Formulary
 
 See `formulary_a4.pdf` file.
+<a href="https://nbviewer.org/github/regi18/Robotics_Formulary/blob/master/formulary_a4.pdf" target="_blank">Click here</a> to view it in the browser.
 
 
 ## Other files 
